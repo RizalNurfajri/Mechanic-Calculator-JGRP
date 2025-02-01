@@ -38,7 +38,6 @@
             transform: scale(1.09); /* Membesarkan sedikit (5%) */
             transform-origin: center; /* Pastikan pembesaran dari tengah */
             overflow: hidden; /* Menghindari scroll di dalam kalkulator */
-            box-sizing: border-box; /* Menjaga padding tidak mempengaruhi ukuran */
         }
 
         h1 {
@@ -191,43 +190,6 @@
 
         input[type="number"] {
             -moz-appearance: textfield;
-        }
-
-        /* Media Queries untuk responsif di berbagai ukuran layar */
-        @media (max-width: 600px) {
-            .calculator {
-                transform: scale(1); /* Kembalikan scale untuk layar kecil */
-                max-width: 100%; /* Menyesuaikan lebar kalkulator dengan layar kecil */
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 24px;  /* Menurunkan ukuran font di layar kecil */
-            }
-
-            h3 {
-                font-size: 18px;
-            }
-
-            .input-group input[type="number"], .input-group input[type="range"] {
-                width: 100%; /* Membuat input mengambil seluruh lebar */
-            }
-
-            .calculator-buttons input {
-                width: 100%; /* Tombol perhitungan akan lebih lebar di layar kecil */
-            }
-        }
-
-        @media (max-width: 400px) {
-            h1 {
-                font-size: 20px;  /* Ukuran lebih kecil untuk layar yang lebih kecil */
-            }
-
-            .calculator {
-                max-width: 100%;
-                transform: scale(1); /* Kembalikan scale pada layar kecil */
-                padding: 10px;
-            }
         }
     </style>
 </head>
