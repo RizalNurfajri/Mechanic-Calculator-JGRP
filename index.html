@@ -4,158 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mechanic Calculator</title>
-    
-    <link rel="icon" href="https://i.imgur.com/rzwlgHQ.png" type="image/png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         body {
+            background: #ffffff; /* White background */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #4e73df, #2c3e50);
             padding: 20px;
         }
         .calculator {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
+            background: #fff; /* White background */
+            border-radius: 16px;
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
-            max-width: 480px;
             width: 100%;
+            max-width: 450px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            box-shadow: none; /* Remove shadow */
         }
         h1 {
-            font-size: 32px;
-            color: #fff;
-            margin-bottom: 10px;
+            font-size: 28px;
+            color: #333;
             font-weight: 600;
+            margin-bottom: 20px;
         }
         .creator {
             font-size: 14px;
-            color: #fff;
-            font-weight: 300;
+            color: #888;
             margin-top: 10px;
         }
         .creator a {
-            color: #fff;
+            color: #3498db;
             text-decoration: none;
         }
         .creator a:hover {
-            color: #3498db;
+            color: #2980b9;
         }
         table {
             width: 100%;
-            margin: 25px 0;
+            margin-bottom: 20px;
             border-collapse: collapse;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
         }
         th, td {
-            padding: 14px;
+            padding: 10px;
             text-align: left;
-            color: #fff;
+            color: #333;
             font-size: 18px;
+            border-bottom: 1px solid #ddd;
         }
         .total {
-            font-weight: 700;
-            color: #fff; 
+            font-weight: 600;
+            color: #333;
         }
         .input-group {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f4f7fb;
+        }
+        input[type="number"], input[type="range"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 100px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="number"]:focus, input[type="range"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .percentage-symbol {
+            font-size: 18px;
+            color: #333;
+        }
+        .calculator-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .calculator-buttons input {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 200px;
+        }
+        .calculator-buttons input:hover {
+            background-color: #2980b9;
+        }
+        .tips {
+            font-size: 14px;
+            color: #888;
+            margin-top: 10px;
+        }
+        .gray-zero {
+            color: #ccc;
+        }
+        .sum-result {
+            margin-top: 20px;
+            color: #333;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        /* Animasi Hover */
+        input[type="number"]:hover, input[type="range"]:hover {
+            border-color: #2980b9;
+        }
+
+        /* Styling untuk kolom penjumlahan 5 angka */
+        .sum-inputs {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background: rgba(255, 255, 255, 0.1);
             padding: 12px;
             border-radius: 10px;
             margin-bottom: 20px;
         }
-        input[type="number"] {
-            width: 80px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            text-align: center;
-            background: #fff;
-            font-size: 16px;
-        }
-        input[type="range"] {
-            flex: 1;
-            margin-left: 10px;
-            height: 8px;
-            border-radius: 5px;
-            background: #fff;
-        }
-        .tips {
-            font-size: 1em;
-            color: #fff;
-            margin-top: 10px;
-        }
-        label {
-            font-size: 18px;
-            color: #fff;
+        .sum-inputs input[type="number"] {
+            width: 50px;
             margin-right: 10px;
         }
-        input[type="number"]:focus, input[type="range"]:focus {
-            outline: none;
-            border-color: #27ae60;
+        /* Hapus tombol up/down pada input number */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
-        .input-group label, .input-group input {
-            transition: all 0.3s ease;
-        }
-        .input-group:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        .calculator-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .sum-column {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        .sum-column input {
-            width: 80px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .plus-icon {
-            font-size: 32px;
-            color: #fff;
-            font-weight: bold;
-        }
-        .sum-result {
-            margin-top: 10px;
-            color: #fff;
-            font-size: 18px;
-        }
-        .gray-zero {
-            color: #888;
+
+        input[type="number"] {
+            -moz-appearance: textfield;
         }
     </style>
 </head>
 <body>
     <div class="calculator">
         <h1>Mechanic Calculator</h1>
+
         <div class="creator">
             Created By <a href="https://jogjagamers.org/profile/149846-scpry/" target="_blank">scpry</a>
         </div>
+
         <table>
             <tr>
                 <th>Elemen</th>
@@ -163,58 +170,54 @@
             </tr>
             <tr>
                 <td>Modal</td>
-                <td id="modal">$0</td>
+                <td id="modal">$0.00</td>
             </tr>
             <tr>
                 <td>Untung</td>
-                <td id="untung">$0</td>
+                <td id="untung">$0.00</td>
             </tr>
             <tr>
                 <td class="total">Total</td>
-                <td class="total" id="total">$0</td>
+                <td class="total" id="total">$0.00</td>
             </tr>
         </table>
-        
+
         <div class="input-group">
-            <label for="profit">Persentase Keuntungan</label>
+            <label for="profit">Keuntungan %</label>
             <input type="number" id="profit" value="20" min="0" max="100" step="1" oninput="syncProfitFromInput()">
-            <input type="range" id="profitRange" min="0" max="100" value="20" oninput="syncProfitFromSlider()">
         </div>
+
         <div class="input-group">
             <label for="component">Jumlah Komponen</label>
-            <input type="number" id="component" placeholder="0" min="0" step="1" oninput="calculatePrice()">
+            <input type="number" id="component" value="" min="0" step="1" placeholder="0" oninput="calculatePrice()">
         </div>
 
-        <!-- Kolom dengan simbol + untuk penjumlahan -->
-        <div class="sum-column">
+        <!-- Kolom Penjumlahan dengan 5 angka -->
+        <div class="sum-inputs">
             <input type="number" id="number1" placeholder="0" oninput="validateInput(this)">
-            <span class="plus-icon">+</span>
             <input type="number" id="number2" placeholder="0" oninput="validateInput(this)">
+            <input type="number" id="number3" placeholder="0" oninput="validateInput(this)">
+            <input type="number" id="number4" placeholder="0" oninput="validateInput(this)">
+            <input type="number" id="number5" placeholder="0" oninput="validateInput(this)">
+            <span class="plus-icon">+</span>
         </div>
+
         <div class="calculator-buttons">
-            <input type="button" value="Tambah" onclick="calculateSum()">
+            <input type="button" value="Hitung" onclick="calculateSum()">
         </div>
+
         <div class="sum-result" id="sumResult">Hasil: 0</div>
 
-        <p class="tips">Tips: Kamu bisa menggunakan + dan -</p>
+        <p class="tips">Tips: Kamu bisa jumlahkan komponen disini</p>
     </div>
 
     <script>
         function syncProfitFromInput() {
             let profitInput = document.getElementById('profit');
-            let profitRange = document.getElementById('profitRange');
-            if (profitInput.value > 100) profitInput.value = 100;
-            if (profitInput.value < 0) profitInput.value = 0;
-            profitRange.value = profitInput.value;
-            calculatePrice();
-        }
-
-        function syncProfitFromSlider() {
-            let profitRange = document.getElementById('profitRange');
-            let profitInput = document.getElementById('profit');
-            if (profitRange.value > 100) profitRange.value = 100;
-            if (profitRange.value < 0) profitRange.value = 0;
-            profitInput.value = profitRange.value;
+            profitInput.value = profitInput.value.replace(/^0+/, '');
+            let profitValue = parseInt(profitInput.value);
+            if (profitValue > 100) profitInput.value = 100;
+            if (profitValue < 0 || isNaN(profitValue)) profitInput.value = 0;
             calculatePrice();
         }
 
@@ -227,30 +230,24 @@
             let modal = componentCount * 0.55;
             let profit = modal * (profitPercent / 100);
             let total = modal + profit;
+
             document.getElementById('modal').innerText = `$${modal.toFixed(2)}`;
             document.getElementById('untung').innerText = `$${profit.toFixed(2)}`;
             document.getElementById('total').innerText = `$${total.toFixed(2)}`;
-            updateComponentInputColor(componentCount);
-        }
-
-        function updateComponentInputColor(value) {
-            let componentInput = document.getElementById('component');
-            if (value === 0) {
-                componentInput.classList.add('gray-zero');
-            } else {
-                componentInput.classList.remove('gray-zero');
-            }
         }
 
         function calculateSum() {
             let num1 = parseFloat(document.getElementById('number1').value) || 0;
             let num2 = parseFloat(document.getElementById('number2').value) || 0;
-            let sum = num1 + num2;
+            let num3 = parseFloat(document.getElementById('number3').value) || 0;
+            let num4 = parseFloat(document.getElementById('number4').value) || 0;
+            let num5 = parseFloat(document.getElementById('number5').value) || 0;
+            let sum = num1 + num2 + num3 + num4 + num5;
             document.getElementById('sumResult').innerText = `Hasil: ${sum}`;
         }
 
         function validateInput(input) {
-            input.value = input.value.replace(/[^0-9.-]/g, '');
+            input.value = input.value.replace(/[^0-9]/g, '');  // hanya angka yang diperbolehkan
         }
     </script>
 </body>
