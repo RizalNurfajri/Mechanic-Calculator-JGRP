@@ -180,15 +180,20 @@
         function syncProfitFromInput() {
             let profitInput = document.getElementById('profit');
             let profitRange = document.getElementById('profitRange');
-            profitRange.value = Math.min(profitInput.value, 100); // Memastikan input tidak lebih dari 100
-            profitInput.value = Math.min(profitInput.value, 100); // Memastikan input tidak lebih dari 100
+            // Membatasi input tidak lebih dari 100
+            if (profitInput.value > 100) profitInput.value = 100;
+            if (profitInput.value < 0) profitInput.value = 0;
+            profitRange.value = profitInput.value;
             calculatePrice();
         }
 
         function syncProfitFromSlider() {
             let profitRange = document.getElementById('profitRange');
             let profitInput = document.getElementById('profit');
-            profitInput.value = Math.min(profitRange.value, 100); // Memastikan input tidak lebih dari 100
+            // Membatasi input tidak lebih dari 100
+            if (profitRange.value > 100) profitRange.value = 100;
+            if (profitRange.value < 0) profitRange.value = 0;
+            profitInput.value = profitRange.value;
             calculatePrice();
         }
 
@@ -240,7 +245,7 @@
             calculatePrice();
         });
         componentInput.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            this.value = this.value.replace(/[^0-9]/g, ''); // Hanya menerima angka
         });
     </script>
 </body>
