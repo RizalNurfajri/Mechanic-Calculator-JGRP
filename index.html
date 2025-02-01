@@ -138,6 +138,29 @@
         .gray-zero {
             color: #888; /* Abu-abu untuk nilai 0 */
         }
+        .plus-icon {
+            font-size: 24px;
+            color: #fff;
+            margin: 0 10px;
+        }
+        .sum-input-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .sum-input-group input {
+            width: 80px;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .sum-input-group label {
+            display: none; /* Menyembunyikan label */
+        }
     </style>
 </head>
 <body>
@@ -175,10 +198,9 @@
         </div>
         
         <!-- Kalkulator Penjumlahan -->
-        <div class="input-group">
-            <label for="number1">Angka 1</label>
+        <div class="sum-input-group">
             <input type="number" id="number1" placeholder="0" oninput="validateInput(this)">
-            <label for="number2">Angka 2</label>
+            <span class="plus-icon">+</span>
             <input type="number" id="number2" placeholder="0" oninput="validateInput(this)">
         </div>
         <div class="calculator-buttons">
