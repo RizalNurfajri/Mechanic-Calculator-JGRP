@@ -191,7 +191,7 @@
 
         <div class="input-group">
             <label for="component">Jumlah Komponen</label>
-            <input type="number" id="component" value="" min="0" step="1" placeholder="0" oninput="calculatePrice()">
+            <input type="number" id="component" value="" min="0" step="1"placeholder="0" oninput="this.value = this.value.replace(/[^0-9]/g, ''); calculatePrice();">
         </div>
 
         <!-- Kolom Penjumlahan dengan 5 angka -->
