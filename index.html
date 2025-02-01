@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mechanic Calculator</title>
     
-    <!-- Favicon dari URL Imgur -->
     <link rel="icon" href="https://i.imgur.com/rzwlgHQ.png" type="image/png">
     
     <style>
@@ -51,7 +50,7 @@
             text-decoration: none;
         }
         .creator a:hover {
-            color: #3498db; /* Biru saat hover */
+            color: #3498db;
         }
         table {
             width: 100%;
@@ -136,39 +135,12 @@
             font-size: 18px;
         }
         .gray-zero {
-            color: #888; /* Abu-abu untuk nilai 0 */
+            color: #888;
         }
-        .plus-icon {
-            font-size: 24px;
+        .plus-logo {
+            font-size: 40px;
             color: #fff;
             margin: 0 10px;
-        }
-        .sum-input-group {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .sum-input-group input {
-            width: 80px;
-            padding: 10px;
-            font-size: 16px;
-            text-align: center;
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        .sum-input-group label {
-            display: none; /* Menyembunyikan label */
-        }
-        .rounded-input {
-            border-radius: 15px;
-            padding: 10px;
-            text-align: center;
-            background: #fff;
-            width: 100%;
-            font-size: 16px;
-            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -196,24 +168,21 @@
                 <td class="total" id="total">$0</td>
             </tr>
         </table>
-        
-        <!-- Keterangan JUMLAH COMPONENTS -->
-        <div class="input-group">
-            <label for="component">JUMLAH COMPONENTS</label>
-            <input type="number" id="component" placeholder="0" min="0" step="1" class="rounded-input" oninput="calculatePrice()">
-        </div>
-        
         <div class="input-group">
             <label for="profit">Persentase Keuntungan</label>
             <input type="number" id="profit" value="20" min="0" max="100" step="1" oninput="syncProfitFromInput()">
             <input type="range" id="profitRange" min="0" max="100" value="20" oninput="syncProfitFromSlider()">
         </div>
+        <div class="input-group">
+            <label for="component">Jumlah Komponen</label>
+            <input type="number" id="component" placeholder="0" min="0" step="1" oninput="calculatePrice()">
+        </div>
         
         <!-- Kalkulator Penjumlahan -->
-        <div class="sum-input-group">
-            <input type="number" id="number1" placeholder="0" oninput="validateInput(this)">
-            <span class="plus-icon">+</span>
-            <input type="number" id="number2" placeholder="0" oninput="validateInput(this)">
+        <div class="input-group">
+            <label for="number1"></label>
+            <div class="plus-logo">+</div>
+            <label for="number2"></label>
         </div>
         <div class="calculator-buttons">
             <input type="button" value="Tambah" onclick="calculateSum()">
@@ -227,7 +196,6 @@
         function syncProfitFromInput() {
             let profitInput = document.getElementById('profit');
             let profitRange = document.getElementById('profitRange');
-            // Membatasi input tidak lebih dari 100
             if (profitInput.value > 100) profitInput.value = 100;
             if (profitInput.value < 0) profitInput.value = 0;
             profitRange.value = profitInput.value;
@@ -237,7 +205,6 @@
         function syncProfitFromSlider() {
             let profitRange = document.getElementById('profitRange');
             let profitInput = document.getElementById('profit');
-            // Membatasi input tidak lebih dari 100
             if (profitRange.value > 100) profitRange.value = 100;
             if (profitRange.value < 0) profitRange.value = 0;
             profitInput.value = profitRange.value;
@@ -275,14 +242,10 @@
             document.getElementById('sumResult').innerText = `Hasil: ${sum}`;
         }
 
-        function validateInput(input) {
-            input.value = input.value.replace(/[^0-9.-]/g, ''); // Memastikan hanya angka dan tanda minus yang bisa dimasukkan
-        }
-
         let componentInput = document.getElementById('component');
         componentInput.addEventListener('focus', function() {
             if (this.value === '0') {
-                this.value = ''; // Mengosongkan saat fokus, mirip seperti angka 1
+                this.value = '';
             }
         });
         componentInput.addEventListener('blur', function() {
@@ -292,7 +255,7 @@
             calculatePrice();
         });
         componentInput.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, ''); // Hanya menerima angka
+            this.value = this.value.replace(/[^0-9]/g, '');
         });
     </script>
 </body>
