@@ -124,6 +124,9 @@
             color: #fff;
             font-size: 18px;
         }
+        .gray-zero {
+            color: #888; /* Abu-abu untuk nilai 0 */
+        }
     </style>
 </head>
 <body>
@@ -161,9 +164,9 @@
         <!-- Kalkulator Penjumlahan -->
         <div class="input-group">
             <label for="number1">Angka 1</label>
-            <input type="number" id="number1" placeholder="0">
+            <input type="number" id="number1" placeholder="0" oninput="validateInput(this)">
             <label for="number2">Angka 2</label>
-            <input type="number" id="number2" placeholder="0">
+            <input type="number" id="number2" placeholder="0" oninput="validateInput(this)">
         </div>
         <div class="calculator-buttons">
             <input type="button" value="Tambah" onclick="calculateSum()">
@@ -177,14 +180,15 @@
         function syncProfitFromInput() {
             let profitInput = document.getElementById('profit');
             let profitRange = document.getElementById('profitRange');
-            profitRange.value = profitInput.value;
+            profitRange.value = Math.min(profitInput.value, 100); // Memastikan input tidak lebih dari 100
+            profitInput.value = Math.min(profitInput.value, 100); // Memastikan input tidak lebih dari 100
             calculatePrice();
         }
 
         function syncProfitFromSlider() {
             let profitRange = document.getElementById('profitRange');
             let profitInput = document.getElementById('profit');
-            profitInput.value = profitRange.value;
+            profitInput.value = Math.min(profitRange.value, 100); // Memastikan input tidak lebih dari 100
             calculatePrice();
         }
 
@@ -200,6 +204,16 @@
             document.getElementById('modal').innerText = `$${modal.toFixed(2)}`;
             document.getElementById('untung').innerText = `$${profit.toFixed(2)}`;
             document.getElementById('total').innerText = `$${total.toFixed(2)}`;
+            updateComponentInputColor(componentCount);
+        }
+
+        function updateComponentInputColor(value) {
+            let componentInput = document.getElementById('component');
+            if (value === 0) {
+                componentInput.classList.add('gray-zero');
+            } else {
+                componentInput.classList.remove('gray-zero');
+            }
         }
 
         function calculateSum() {
@@ -209,10 +223,14 @@
             document.getElementById('sumResult').innerText = `Hasil: ${sum}`;
         }
 
+        function validateInput(input) {
+            input.value = input.value.replace(/[^0-9.-]/g, ''); // Memastikan hanya angka dan tanda minus yang bisa dimasukkan
+        }
+
         let componentInput = document.getElementById('component');
         componentInput.addEventListener('focus', function() {
             if (this.value === '0') {
-                this.value = '';
+                this.value = ''; // Mengosongkan saat fokus, mirip seperti angka 1
             }
         });
         componentInput.addEventListener('blur', function() {
