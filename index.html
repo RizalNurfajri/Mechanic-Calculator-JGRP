@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mechanic Calculator</title>
+    
+    <!-- Favicon dari URL Imgur -->
+    <link rel="icon" href="https://i.imgur.com/wXNLATE.png" type="image/png">
+    
     <style>
         * {
             margin: 0;
@@ -127,28 +131,6 @@
         .gray-zero {
             color: #888; /* Abu-abu untuk nilai 0 */
         }
-
-        /* Tambahkan gaya untuk input dengan simbol persen */
-        .input-with-percent {
-            display: flex;
-            align-items: center;
-        }
-
-        .input-with-percent input {
-            width: 80px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            text-align: center;
-            background: #fff;
-            font-size: 16px;
-        }
-
-        .percent-symbol {
-            font-size: 18px;
-            color: #fff;
-            margin-left: 5px;
-        }
     </style>
 </head>
 <body>
@@ -175,10 +157,7 @@
         </table>
         <div class="input-group">
             <label for="profit">Persentase Keuntungan</label>
-            <div class="input-with-percent">
-                <input type="number" id="profit" value="20" min="0" max="100" step="1" oninput="syncProfitFromInput()">
-                <span class="percent-symbol">%</span>
-            </div>
+            <input type="number" id="profit" value="20" min="0" max="100" step="1" oninput="syncProfitFromInput()">
             <input type="range" id="profitRange" min="0" max="100" value="20" oninput="syncProfitFromSlider()">
         </div>
         <div class="input-group">
