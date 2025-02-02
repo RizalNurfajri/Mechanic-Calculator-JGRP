@@ -20,11 +20,12 @@
             background: #ffffff;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Ubah align-items ke flex-start agar tetap di atas */
             height: 100vh;
             margin: 0;
-            padding: 0;
-            overflow: auto; /* Allow scrolling if needed */
+            padding: 20px 0 0 0;
+            overflow-y: auto; /* Pastikan scroll vertikal aktif */
+            width: 100%; /* Pastikan lebar tubuh penuh */
         }
 
         .calculator {
@@ -32,27 +33,27 @@
             border-radius: 16px;
             padding: 20px;
             width: 100%;
-            max-width: 350px; /* Lebar maksimal */
+            max-width: 420px;
             text-align: left;
             box-shadow: none;
-            transform: scale(1.09); /* Membesarkan sedikit (5%) */
-            transform-origin: center; /* Pastikan pembesaran dari tengah */
+            transform: none; /* Hapus transformasi scale */
             overflow: hidden; /* Menghindari scroll di dalam kalkulator */
+            margin: 0 auto; /* Pastikan kalkulator terpusat */
         }
 
         h1 {
-            font-size: 30px;  /* Ukuran font lebih besar */
+            font-size: 35px;  
             color: #333;
             font-weight: 600;
             margin-bottom: 15px;
-            white-space: nowrap;  /* Menghindari teks memotong ke bawah */
+            white-space: nowrap;
         }
 
         .creator {
             font-size: 12px;
             color: #888;
             position: relative;
-            top: -20px; /* Geser ke atas */
+            top: -20px; 
         }
 
         .creator a {
@@ -90,11 +91,11 @@
         }
 
         th {
-            text-align: left; /* Elemen tetap di kiri */
+            text-align: left; 
         }
 
         th.nominal, td.nominal {
-            text-align: right !important; /* Pastikan teks nominal tetap rata kanan */
+            text-align: right !important;
         }
 
         .total {
@@ -147,7 +148,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             width: 160px;
-            margin-right: 10px; /* Add space between buttons */
+            margin-right: 10px;
         }
 
         .calculator-buttons input:hover {
@@ -165,7 +166,7 @@
             color: #333;
             font-size: 16px;
             font-weight: 600;
-            text-align: center; /* Center the result text */
+            text-align: center; 
         }
 
         .sum-inputs {
@@ -202,7 +203,7 @@
             Created By <a href="https://jogjagamers.org/profile/149846-scpry/" target="_blank">scpry / Camila Oliveira</a>
         </div>
 
-        <h3>Perhitungan Harga</h3>
+        <h3>Rincian Harga</h3>
         <p>(Comp × Harga) × (100 + Profit)% = Harga</p>
 
         <table>
