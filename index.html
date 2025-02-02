@@ -147,6 +147,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
             width: 160px;
+            margin-right: 10px; /* Add space between buttons */
         }
 
         .calculator-buttons input:hover {
@@ -246,6 +247,7 @@
 
         <div class="calculator-buttons">
             <input type="button" value="Hitung" onclick="calculateSum()">
+            <input type="button" value="Clear" onclick="clearSum()">
         </div>
 
         <div class="sum-result" id="sumResult">Hasil: 0</div>
@@ -284,6 +286,15 @@
             let num5 = parseFloat(document.getElementById('number5').value) || 0;
             let sum = num1 + num2 + num3 + num4 + num5;
             document.getElementById('sumResult').innerText = `Hasil: ${sum}`;
+        }
+
+        function clearSum() {
+            document.getElementById('number1').value = '';
+            document.getElementById('number2').value = '';
+            document.getElementById('number3').value = '';
+            document.getElementById('number4').value = '';
+            document.getElementById('number5').value = '';
+            document.getElementById('sumResult').innerText = 'Hasil: 0';
         }
 
         function validateInput(input) {
